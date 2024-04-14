@@ -90,9 +90,13 @@ def recursion_extension_search(path, extension):
     result = os.listdir(path)
     # checks if path of each item in the source directory is file and prints the path if it is a file
     for content in result:
-        if os.path.isfile(os.path.join(path, content)) and content.endswith("."+extension):
-            print(os.path.join(path, content))
-        elif os.path.isdir(os.path.join(path, content)):
+        if extension[0] == ".":
+            if os.path.isfile(os.path.join(path, content)) and content.endswith(extension):
+                print(os.path.join(path, content))
+        else:
+            if os.path.isfile(os.path.join(path, content)) and content.endswith("."+extension):
+                print(os.path.join(path, content))
+        if os.path.isdir(os.path.join(path, content)):
             subdir_list.append(os.path.join(path, content))
     for subdir in subdir_list:
         recursion_extension_search(subdir, extension)
@@ -103,8 +107,12 @@ def extension_search(path, extension):
     result = os.listdir(path)
     # checks if path of each item in the source directory is file and prints the path if it is a file
     for content in result:
-        if os.path.isfile(os.path.join(path, content)) and content.endswith("."+extension):
-            print(os.path.join(path, content))
+        if extension[0] == ".":
+            if os.path.isfile(os.path.join(path, content)) and content.endswith(extension):
+                print(os.path.join(path, content))
+        else:
+            if os.path.isfile(os.path.join(path, content)) and content.endswith("."+extension):
+                print(os.path.join(path, content))
 
 def create_file(path, file_name):
     # Create the folder if it doesn't already exist 
